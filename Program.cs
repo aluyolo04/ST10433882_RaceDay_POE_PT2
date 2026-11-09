@@ -70,6 +70,10 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+builder.Services.AddSingleton<
+    RaceDay.Api.Services.ProfileImageStorageService>();
+
+
 var app = builder.Build();
 
 app.UseSwagger();

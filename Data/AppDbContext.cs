@@ -32,6 +32,9 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<User>(e =>
         {
+
+            e.Property(u => u.ProfileImageBlobName).HasMaxLength(255);
+
             e.ToTable("Users");
             e.HasKey(u => u.UserId);
             e.Property(u => u.FullName).IsRequired().HasMaxLength(100);
