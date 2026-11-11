@@ -1,0 +1,64 @@
+﻿@model RaceDay.Mvc.Models.CategoryViewModel
+
+@{
+    ViewData["Title"] = "Edit Category";
+}
+
+<div class="container py-5">
+    <div class="card shadow-sm p-4 mx-auto"
+         style="max-width:650px">
+
+        <h2 class="fw-bold mb-4">Edit Race Category</h2>
+
+        <form asp-action="EditCategory" method="post">
+
+            <div asp-validation-summary="ModelOnly"
+                 class="text-danger"></div>
+
+            <input type="hidden" asp-for="CategoryId" />
+            <input type="hidden" asp-for="EventId" />
+
+            <div class="mb-3">
+                <label asp-for="CategoryName"></label>
+                <input asp-for="CategoryName"
+                       class="form-control" />
+                <span asp-validation-for="CategoryName"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label>Distance (km)</label>
+                <input asp-for="DistanceKm" type="number"
+                       step="0.01" class="form-control" />
+                <span asp-validation-for="DistanceKm"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label>Entry Fee (R)</label>
+                <input asp-for="EntryFee" type="number"
+                       step="0.01" class="form-control" />
+                <span asp-validation-for="EntryFee"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-4">
+                <label>Maximum Participants</label>
+                <input asp-for="MaxParticipants"
+                       type="number" class="form-control" />
+                <span asp-validation-for="MaxParticipants"
+                      class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-raceday">
+                Save Changes
+            </button>
+
+            <a asp-action="EventDetails"
+               asp-route-id="@Model.EventId"
+               class="btn btn-secondary">
+                Cancel
+            </a>
+        </form>
+    </div>
+</div>

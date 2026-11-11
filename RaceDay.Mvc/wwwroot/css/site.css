@@ -1,0 +1,235 @@
+
+:root {
+    --raceday-dark: #101820;
+    --raceday-orange: #ff6b35;
+    --raceday-light: #f4f6f8;
+    --raceday-text: #252b33;
+}
+
+body {
+    background: var(--raceday-light);
+    color: var(--raceday-text);
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.raceday-nav {
+    background: var(--raceday-dark);
+    padding: 16px 0;
+}
+
+.navbar-brand {
+    font-size: 25px;
+    letter-spacing: 1px;
+}
+
+.brand-dot {
+    color: var(--raceday-orange);
+}
+
+.nav-link {
+    margin: 0 8px;
+}
+
+.btn-raceday {
+    background: var(--raceday-orange);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+    .btn-raceday:hover {
+        background: #e95725;
+        color: white;
+    }
+
+.auth-container {
+    min-height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 15px;
+}
+
+.auth-card {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+}
+
+    .auth-card h1 {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .auth-card > p {
+        color: #707780;
+    }
+
+.form-control,
+.form-select {
+    padding: 11px;
+}
+
+.raceday-footer {
+    background: var(--raceday-dark);
+    color: white;
+    padding: 22px;
+    margin-top: 40px;
+}
+
+.text-danger {
+    font-size: 13px;
+}
+
+.profile-avatar {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    background: #ff6b35;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+}
+
+    .card:hover {
+        transition: box-shadow 0.2s ease;
+    }
+
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Homepage */
+.hero-section {
+    background: linear-gradient( 115deg, #101820 0%, #182b39 65%, #283c49 100% );
+    color: white;
+    padding: 115px 0;
+}
+
+.hero-eyebrow {
+    color: #ff6b35;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.hero-title {
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -2px;
+    margin: 22px 0;
+}
+
+    .hero-title span {
+        color: #ff6b35;
+    }
+
+.hero-description {
+    font-size: 19px;
+    color: #c9d0d6;
+    max-width: 650px;
+    line-height: 1.8;
+    margin-bottom: 32px;
+}
+
+.feature-card {
+    border: none;
+    border-radius: 14px;
+    background: white;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+    }
+
+.feature-icon {
+    font-size: 42px;
+    margin-bottom: 18px;
+}
+
+.feature-card h4 {
+    font-weight: 700;
+}
+
+.feature-card p {
+    color: #6c757d;
+    line-height: 1.7;
+}
+
+.cta-section {
+    background: #17232d;
+    color: white;
+    padding: 75px 20px;
+}
+
+    .cta-section p {
+        color: #c9d0d6;
+        margin: 18px 0 30px;
+    }
+
+.btn {
+    transition: all 0.2s ease;
+}
+
+    .btn:focus-visible,
+    .form-control:focus-visible,
+    .form-select:focus-visible {
+        outline: 3px solid #ffb38c;
+        outline-offset: 2px;
+    }
+
+.table-responsive {
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 75px 0;
+    }
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+    .auth-card {
+        padding: 25px;
+    }
+
+    .navbar-nav {
+        align-items: stretch !important;
+    }
+
+        .navbar-nav .nav-link {
+            padding: 10px 0;
+        }
+
+    .card {
+        margin-bottom: 5px;
+    }
+}
+

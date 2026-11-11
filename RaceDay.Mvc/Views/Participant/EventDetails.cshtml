@@ -1,0 +1,69 @@
+﻿@model RaceDay.Mvc.Models.EventDetailsViewModel
+
+@{
+    ViewData["Title"] = Model.Event.EventName;
+}
+
+<div class="container py-5">
+    <a asp-action="Index" class="btn btn-outline-secondary mb-4">
+        Back to Events
+    </a>
+
+    <h1 class="fw-bold">@Model.Event.EventName</h1>
+    <p class="lead">@Model.Event.Description</p>
+
+    <div class="card shadow-sm p-4 mb-5">
+        <p><strong>Location:</strong> @Model.Event.Location</p>
+        <p><strong>Date:</strong> @Model.Event.EventDate?.ToString("dd MMM yyyy")</p>
+        <p><strong>Type:</strong> @Model.Event.EventType</p>
+        <p><strong>Distance:</strong> @Model.Event.DistanceKm km</p>
+        <p><strong>Organiser:</strong> @Model.Event.OrganiserName</p>
+    </div>
+
+    <h3 class="fw-bold mb-4">Available Categories</h3>
+
+    <div class="row g-4">
+        @foreach (var category in Model.Categories)
+        {
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100 p-4">
+                    <h4>@category.CategoryName</h4>
+
+                    <p>Distance: @category.DistanceKm km</p>
+                    <p>Entry Fee: R @category.EntryFee.ToString("N2")</p>
+                    <p>
+                        Spaces: @category.EnrolmentCount /
+                        @category.MaxParticipants
+                    </p>
+
+                    @if (category.EnrolmentCount >= category.MaxParticipants)
+                    {
+                        <button class="btn btn-secondary" disabled>
+                            Category Full
+                        </button>
+                    }
+                    else
+                    {
+                        <form asp-action="Enrol" method="post">
+                            <input type="hidden" name="categoryId"
+                                   value="@category.CategoryId" />
+                            <input type="hidden" name="eventId"
+                                   value="@Model.Event.EventId" />
+
+                            <button class="btn btn-raceday w-100">
+                                Enrol Now
+                            </button>
+                        </form>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+    @if (!Model.Categories.Any())
+    {
+        <div class="alert alert-info">
+            No categories are available for this event yet.
+        </div>
+    }
+</div>

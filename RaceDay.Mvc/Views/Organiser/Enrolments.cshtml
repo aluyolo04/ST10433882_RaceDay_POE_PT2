@@ -1,0 +1,50 @@
+﻿@model List<RaceDay.Mvc.Models.EnrolmentViewModel>
+
+@{
+    ViewData["Title"] = "Category Enrolments";
+}
+
+<div class="container py-5">
+    <h1 class="fw-bold mb-4">Participant Enrolments</h1>
+
+    <p>Total participants: <strong>@Model.Count</strong></p>
+
+    <div class="table-responsive">
+        <table class="table table-hover bg-white">
+            <thead class="table-dark">
+                <tr>
+                    <th>Participant</th>
+                    <th>Event</th>
+                    <th>Category</th>
+                    <th>Enrolled On</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var enrolment in Model)
+                {
+                    <tr>
+                        <td>@enrolment.ParticipantName</td>
+                        <td>@enrolment.EventName</td>
+                        <td>@enrolment.CategoryName</td>
+                        <td>
+                            @enrolment.EnrolmentDate.ToString("dd MMM yyyy")
+                        </td>
+                        <td>@enrolment.Status</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            No participants have enrolled yet.
+        </div>
+    }
+
+    <a asp-action="Dashboard" class="btn btn-secondary mt-3">
+        Back to Dashboard
+    </a>
+</div>

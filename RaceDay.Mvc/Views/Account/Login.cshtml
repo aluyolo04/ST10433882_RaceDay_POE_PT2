@@ -1,0 +1,52 @@
+﻿@model RaceDay.Mvc.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="auth-container">
+    <div class="auth-card">
+        <h1>Welcome Back</h1>
+        <p>Sign in to your RaceDay account.</p>
+
+        <form asp-action="Login" method="post">
+
+            <div asp-validation-summary="ModelOnly"
+                 class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">
+                    Email Address
+                </label>
+                <input asp-for="Email" class="form-control"
+                       placeholder="Enter your email" />
+                <span asp-validation-for="Email"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">
+                    Password
+                </label>
+                <input asp-for="Password" type="password"
+                       class="form-control"
+                       placeholder="Enter your password" />
+                <span asp-validation-for="Password"
+                      class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-raceday w-100">
+                Login
+            </button>
+        </form>
+
+        <p class="mt-4 text-center">
+            Don't have an account?
+            <a asp-action="Register">Register here</a>
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

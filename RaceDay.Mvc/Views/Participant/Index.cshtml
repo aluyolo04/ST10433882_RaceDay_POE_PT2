@@ -1,0 +1,81 @@
+﻿@model List<RaceDay.Mvc.Models.EventViewModel>
+
+@{
+    ViewData["Title"] = "Explore Events";
+}
+
+<div class="container py-5">
+    <div class="mb-4">
+        <h1 class="fw-bold">Find Your Next Race</h1>
+        <p class="text-muted">
+            Discover upcoming running, walking and cycling events.
+        </p>
+    </div>
+
+    <form method="get" asp-action="Index" class="row g-3 mb-5">
+        <div class="col-md-6">
+            <input name="search" value="@ViewBag.Search"
+                   class="form-control"
+                   placeholder="Search events or locations..." />
+        </div>
+
+        <div class="col-md-4">
+            <select name="type" class="form-select">
+                <option value="">All Event Types</option>
+                @foreach (var t in new[] { "Run", "Walk", "Cycle" })
+                {
+                    <option value="@t" selected="@(ViewBag.Type == t)">
+                        @t
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <button class="btn btn-raceday w-100">Search</button>
+        </div>
+    </form>
+
+    <div class="d-flex justify-content-between mb-4">
+        <h3>Upcoming Events</h3>
+        <a asp-action="MyEnrolments" class="btn btn-outline-dark">
+            My Enrolments
+        </a>
+    </div>
+
+    <div class="row g-4">
+        @foreach (var ev in Model)
+        {
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body p-4">
+                        <span class="badge bg-dark mb-3">
+                            @ev.EventType
+                        </span>
+
+                        <h4 class="fw-bold">@ev.EventName</h4>
+
+                        <p class="text-muted">@ev.Description</p>
+
+                        <p>📍 @ev.Location</p>
+                        <p>📅 @ev.EventDate?.ToString("dd MMM yyyy")</p>
+                        <p>🏃 @ev.DistanceKm km</p>
+
+                        <a asp-action="EventDetails"
+                           asp-route-id="@ev.EventId"
+                           class="btn btn-raceday w-100">
+                            View Event
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            No upcoming events match your search.
+        </div>
+    }
+</div>

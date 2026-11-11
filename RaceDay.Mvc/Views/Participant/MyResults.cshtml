@@ -1,0 +1,77 @@
+﻿@model List<RaceDay.Mvc.Models.RaceResultViewModel>
+
+@{
+    ViewData["Title"] = "My Race Results";
+}
+
+<div class="container py-5">
+
+    <h1 class="fw-bold">My Race Results</h1>
+
+    <p class="text-muted mb-4">
+        Track your race history, finishing times and positions.
+    </p>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            You don't have any recorded race results yet.
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+
+            @foreach (var result in Model)
+            {
+                <div class="col-md-6">
+                    <div class="card shadow-sm h-100 p-4">
+
+                        <h4 class="fw-bold">@result.EventName</h4>
+
+                        <p class="text-muted">
+                            @result.CategoryName
+                        </p>
+
+                        <hr />
+
+                        <p>
+                            <strong>Finish Time:</strong>
+                            @(result.FinishTime ?? "Not recorded")
+                        </p>
+
+                        <p>
+                            <strong>Position:</strong>
+                            @(result.Position?.ToString() ?? "N/A")
+                        </p>
+
+                        <p>
+                            <strong>Status:</strong>
+
+                            @if (result.Status == "Finished")
+                            {
+                                <span class="badge bg-success">
+                                    Finished
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning text-dark">
+                                    @result.Status
+                                </span>
+                            }
+                        </p>
+
+                    </div>
+                </div>
+            }
+
+        </div>
+    }
+
+    <a asp-action="Index"
+       class="btn btn-raceday mt-4">
+        Browse Events
+    </a>
+
+</div>

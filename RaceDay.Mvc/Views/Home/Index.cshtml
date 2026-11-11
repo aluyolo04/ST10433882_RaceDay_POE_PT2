@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Home";
+    var loggedIn = Context.Session.GetString("Token") != null;
+    var role = Context.Session.GetString("Role");
+}
+
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <span class="hero-eyebrow">
+                    YOUR RACE. YOUR JOURNEY.
+                </span>
+
+                <h1 class="hero-title">
+                    EVERY RACE<br />
+                    HAS A <span>STORY.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Discover exciting sporting events, register
+                    for your next challenge and track every
+                    achievement with RaceDay.
+                </p>
+
+                <div class="d-flex gap-3 flex-wrap">
+                    @if (!loggedIn)
+                    {
+                        <a asp-controller="Account"
+                           asp-action="Register"
+                           class="btn btn-raceday btn-lg">
+                            Get Started
+                        </a>
+
+                        <a asp-controller="Account"
+                           asp-action="Login"
+                           class="btn btn-outline-light btn-lg">
+                            Sign In
+                        </a>
+                    }
+                    else if (role == "Organiser")
+                    {
+                        <a asp-controller="Organiser"
+                           asp-action="Dashboard"
+                           class="btn btn-raceday btn-lg">
+                            Manage My Events
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Participant"
+                           asp-action="Index"
+                           class="btn btn-raceday btn-lg">
+                            Explore Events
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">Everything You Need for RaceDay</h2>
+        <p class="text-muted">
+            One platform for organisers and participants.
+        </p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card feature-card p-4 h-100">
+                <div class="feature-icon">🏃</div>
+                <h4>Discover Events</h4>
+                <p>
+                    Find upcoming running, walking and cycling
+                    events that match your goals.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card feature-card p-4 h-100">
+                <div class="feature-icon">🏅</div>
+                <h4>Track Results</h4>
+                <p>
+                    Keep track of your finishing times,
+                    positions and racing achievements.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card feature-card p-4 h-100">
+                <div class="feature-icon">📅</div>
+                <h4>Manage Races</h4>
+                <p>
+                    Create events, manage categories,
+                    track enrolments and capture results.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section text-center">
+    <div class="container">
+        <h2 class="fw-bold">Ready for Your Next Challenge?</h2>
+        <p>Join RaceDay and make every race count.</p>
+
+        <a asp-controller="Account"
+           asp-action="Register"
+           class="btn btn-raceday btn-lg">
+            Join RaceDay
+        </a>
+    </div>
+</section>
